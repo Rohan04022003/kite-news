@@ -5,7 +5,7 @@ export const NewsContext = createContext();
 export const NewsProvider = ({ children }) => {
     const apiKey = import.meta.env.VITE_NEWS_API_KEY; // Correct way to access environment variables in Vite
     const [newsData, setNewsData] = useState([]);
-    const [apiURL, setApiURL] = useState(`https://newsapi.org/v2/everything?q=hacking&pageSize=20&page=1&sortBy=popularity&apiKey=${apiKey}`);
+    const [apiURL, setApiURL] = useState(`https://newsapi.org/v2/top-headlines?q=india&pageSize=20&page=1&sortBy=popularity&apiKey=${apiKey}`);
     const [headlines, setHeadlines] = useState("Top Headlines");
     const [currentPage, setCurrentPage] = useState(1);
     const [pageSize] = useState(20); 
@@ -32,7 +32,7 @@ export const NewsProvider = ({ children }) => {
             }
             const data = await response.json();
             setNewsData((prevData) => [...prevData, ...data.articles]);
-        } catch (error) {image.png
+        } catch (error) {
             console.error("Error fetching the news:", error);
             setError("Failed to fetch news. Please try again later.");
             setNewsData([]);
@@ -48,7 +48,7 @@ export const NewsProvider = ({ children }) => {
     const loadMoreNews = () => {
         setCurrentPage((prevPage) => {
             const newPage = prevPage + 1;
-            const newUrl = `https://newsapi.org/v2/everything?&pageSize=${pageSize}&page=${newPage}&sortBy=popularity&apiKey=${apiKey}`;
+            const newUrl = `https://newsapi.org/v2/top-headlines?&pageSize=${pageSize}&page=${newPage}&sortBy=popularity&apiKey=${apiKey}`;
             updateApiUrl(newUrl);
             return newPage;
         });
