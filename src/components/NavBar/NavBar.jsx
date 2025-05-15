@@ -20,7 +20,7 @@ const NavBar = () => {
     if (input) {
       setNewsData([]);
       setHeadlines(input);
-      const url = `https://newsapi.org/v2/everything?q=${input}&sortBy=popularity&apiKey=${apiKey}`;
+      const url = `https://newsapi.org/v2/top-headlines?q=${input}&sortBy=popularity&apiKey=${apiKey}`;
       updateApiUrl(url);
       navigate(`/${input}`);
       setInput("");
@@ -31,7 +31,7 @@ const NavBar = () => {
   const handleCategoryClick = (category) => {
     setHeadlines(category);
     setNewsData([]);
-    const url = `https://newsapi.org/v2/everything?q=${category.toLowerCase()}&sortBy=popularity&apiKey=${apiKey}`;
+    const url = `https://newsapi.org/v2/top-headlines?q=${category.toLowerCase()}&sortBy=popularity&apiKey=${apiKey}`;
     updateApiUrl(url);
     navigate(`/${category.toLowerCase()}`);
     closeNavbar();
@@ -55,7 +55,7 @@ const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div className="container-fluid">
-        <a className="navbar-brand" style={{ fontWeight: "600", letterSpacing: "1px" }}>Kite News</a>
+        <Link to={"/"} onClick={() => handleCategoryClick("india")} className="navbar-brand" style={{ fontWeight: "600", letterSpacing: "1px" }}>Kite News</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
