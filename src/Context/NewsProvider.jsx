@@ -32,7 +32,7 @@ export const NewsProvider = ({ children }) => {
             }
             const data = await response.json();
             setNewsData((prevData) => [...prevData, ...data.articles]);
-        } catch (error) {
+        } catch (error) {image.png
             console.error("Error fetching the news:", error);
             setError("Failed to fetch news. Please try again later.");
             setNewsData([]);
